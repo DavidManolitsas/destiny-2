@@ -1,2 +1,10 @@
 server:
   port: 8080
+
+bungie:
+  client:
+    bungie-platform:
+      base-url: 'https://www.bungie.net/Platform'
+      x-api-key: '${BUNGIE_API_KEY}'
+    bungie-common:
+      base-url: 'https://www.bungie.net'
