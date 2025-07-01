@@ -1,0 +1,199 @@
+openapi: 3.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: localhost
+info:
+  version: 1.0.0
+  title: Destiny 2 API
+paths:
+  /manifest:
+    get:
+      summary: Get Bungie Destiny 2 Manifest
+      tags:
+        - Manifest
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manifest'
+components:
+  schemas:
+    Manifest:
+      type: object
+      properties:
+        DestinyArtDyeChannelDefinition:
+          type: string
+        DestinyArtDyeReferenceDefinition:
+          type: string
+        DestinyPlaceDefinition:
+          type: string
+        DestinyActivityDefinition:
+          type: string
+        DestinyActivityTypeDefinition:
+          type: string
+        DestinyClassDefinition:
+          type: string
+        DestinyGenderDefinition:
+          type: string
+        DestinyInventoryBucketDefinition:
+          type: string
+        DestinyRaceDefinition:
+          type: string
+        DestinyUnlockDefinition:
+          type: string
+        DestinyStatGroupDefinition:
+          type: string
+        DestinyProgressionMappingDefinition:
+          type: string
+        DestinyFactionDefinition:
+          type: string
+        DestinyVendorGroupDefinition:
+          type: string
+        DestinyRewardSourceDefinition:
+          type: string
+        DestinyUnlockValueDefinition:
+          type: string
+        DestinyRewardMappingDefinition:
+          type: string
+        DestinyRewardSheetDefinition:
+          type: string
+        DestinyItemCategoryDefinition:
+          type: string
+        DestinyDamageTypeDefinition:
+          type: string
+        DestinyActivityModeDefinition:
+          type: string
+        DestinyMedalTierDefinition:
+          type: string
+        DestinyAchievementDefinition:
+          type: string
+        DestinyActivityGraphDefinition:
+          type: string
+        DestinyActivityInteractableDefinition:
+          type: string
+        DestinyBondDefinition:
+          type: string
+        DestinyCharacterCustomizationCategoryDefinition:
+          type: string
+        DestinyCharacterCustomizationOptionDefinition:
+          type: string
+        DestinyCollectibleDefinition:
+          type: string
+        DestinyDestinationDefinition:
+          type: string
+        DestinyEntitlementOfferDefinition:
+          type: string
+        DestinyEquipmentSlotDefinition:
+          type: string
+        DestinyEventCardDefinition:
+          type: string
+        DestinyFireteamFinderActivityGraphDefinition:
+          type: string
+        DestinyFireteamFinderActivitySetDefinition:
+          type: string
+        DestinyFireteamFinderLabelDefinition:
+          type: string
+        DestinyFireteamFinderLabelGroupDefinition:
+          type: string
+        DestinyFireteamFinderOptionDefinition:
+          type: string
+        DestinyFireteamFinderOptionGroupDefinition:
+          type: string
+        DestinyStatDefinition:
+          type: string
+        DestinyInventoryItemDefinition:
+          type: string
+        DestinyInventoryItemLiteDefinition:
+          type: string
+        DestinyItemTierTypeDefinition:
+          type: string
+        DestinyLoadoutColorDefinition:
+          type: string
+        DestinyLoadoutIconDefinition:
+          type: string
+        DestinyLoadoutNameDefinition:
+          type: string
+        DestinyLocationDefinition:
+          type: string
+        DestinyLoreDefinition:
+          type: string
+        DestinyMaterialRequirementSetDefinition:
+          type: string
+        DestinyMetricDefinition:
+          type: string
+        DestinyObjectiveDefinition:
+          type: string
+        DestinySandboxPerkDefinition:
+          type: string
+        DestinyPlatformBucketMappingDefinition:
+          type: string
+        DestinyPlugSetDefinition:
+          type: string
+        DestinyPowerCapDefinition:
+          type: string
+        DestinyPresentationNodeDefinition:
+          type: string
+        DestinyProgressionDefinition:
+          type: string
+        DestinyProgressionLevelRequirementDefinition:
+          type: string
+        DestinyRecordDefinition:
+          type: string
+        DestinyRewardAdjusterPointerDefinition:
+          type: string
+        DestinyRewardAdjusterProgressionMapDefinition:
+          type: string
+        DestinyRewardItemListDefinition:
+          type: string
+        DestinySackRewardItemListDefinition:
+          type: string
+        DestinySandboxPatternDefinition:
+          type: string
+        DestinySeasonDefinition:
+          type: string
+        DestinySeasonPassDefinition:
+          type: string
+        DestinySocialCommendationDefinition:
+          type: string
+        DestinySocketCategoryDefinition:
+          type: string
+        DestinySocketTypeDefinition:
+          type: string
+        DestinyTraitDefinition:
+          type: string
+        DestinyUnlockCountMappingDefinition:
+          type: string
+        DestinyUnlockEventDefinition:
+          type: string
+        DestinyUnlockExpressionMappingDefinition:
+          type: string
+        DestinyVendorDefinition:
+          type: string
+        DestinyMilestoneDefinition:
+          type: string
+        DestinyActivityModifierDefinition:
+          type: string
+        DestinyReportReasonCategoryDefinition:
+          type: string
+        DestinyArtifactDefinition:
+          type: string
+        DestinyBreakerTypeDefinition:
+          type: string
+        DestinyChecklistDefinition:
+          type: string
+        DestinyEnergyTypeDefinition:
+          type: string
+        DestinySocialCommendationNodeDefinition:
+          type: string
+        DestinyGuardianRankDefinition:
+          type: string
+        DestinyGuardianRankConstantsDefinition:
+          type: string
+        DestinyLoadoutConstantsDefinition:
+          type: string
+        DestinyFireteamFinderConstantsDefinition:
+          type: string
+        DestinyGlobalConstantsDefinition:
+          type: string
