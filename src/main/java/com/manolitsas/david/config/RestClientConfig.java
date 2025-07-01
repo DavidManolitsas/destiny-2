@@ -17,10 +17,13 @@ public class RestClientConfig {
   @Value("${bungie.client.bungie-platform.x-api-key}")
   private String bungieApiKey;
 
+  @Value("${bungie.client.bungie-common.base-url}")
+  private String bungieCommonBaseUrl;
+
   private final RestClientInterceptor interceptor;
 
   @Bean
-  public RestClient client(RestClient.Builder builder) {
+  public RestClient bungiePlatformRestClient(RestClient.Builder builder) {
     return builder
         .baseUrl(bungieBaseUrl)
         .requestInterceptor(interceptor)
@@ -31,4 +34,12 @@ public class RestClientConfig {
         .build();
   }
 
+  @Bean
+  public RestClient bungieCommonRestClient(RestClient.Builder builder) {
+    return builder
+        .baseUrl(bungieCommonBaseUrl)
+        .requestInterceptor(interceptor)
+        .defaultHeader("Accept", "application/json")
+        .build();
+  }
 }
