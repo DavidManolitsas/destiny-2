@@ -1,4 +1,4 @@
-package com.manolitsas.david.model;
+package com.manolitsas.david.model.platform;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

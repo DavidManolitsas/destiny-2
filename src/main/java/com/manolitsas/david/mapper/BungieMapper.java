@@ -1,11 +1,11 @@
 package com.manolitsas.david.mapper;
 
-import com.manolitsas.david.dto.Manifest;
-import com.manolitsas.david.model.WorldComponentContent;
+import com.manolitsas.david.dto.DestinyDefinitions;
+import com.manolitsas.david.model.platform.WorldComponentContent;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface BungieMapper {
 
-  Manifest toManifest(WorldComponentContent worldComponentContent);
+  DestinyDefinitions toDestinyDefinitions(WorldComponentContent worldComponentContent);
 }

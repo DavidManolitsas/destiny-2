@@ -1,8 +1,10 @@
-package com.manolitsas.david.model;
+package com.manolitsas.david.model.platform;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -268,4 +270,99 @@ public class WorldComponentContent {
 
   @JsonProperty("DestinyGlobalConstantsDefinition")
   private String destinyGlobalConstantsDefinition;
+
+  public List<String> getAllDefinitions() {
+   return List.of(
+       this.getDestinyArtDyeChannelDefinition(),
+       this.getDestinyArtDyeReferenceDefinition(),
+       this.getDestinyPlaceDefinition(),
+       this.getDestinyActivityDefinition(),
+       this.getDestinyActivityTypeDefinition(),
+       this.getDestinyClassDefinition(),
+       this.getDestinyGenderDefinition(),
+       this.getDestinyInventoryBucketDefinition(),
+       this.getDestinyRaceDefinition(),
+       this.getDestinyUnlockDefinition(),
+       this.getDestinyStatGroupDefinition(),
+       this.getDestinyProgressionMappingDefinition(),
+       this.getDestinyFactionDefinition(),
+       this.getDestinyVendorGroupDefinition(),
+       this.getDestinyRewardSourceDefinition(),
+       this.getDestinyUnlockValueDefinition(),
+       this.getDestinyRewardMappingDefinition(),
+       this.getDestinyRewardSheetDefinition(),
+       this.getDestinyItemCategoryDefinition(),
+       this.getDestinyDamageTypeDefinition(),
+       this.getDestinyActivityModeDefinition(),
+       this.getDestinyMedalTierDefinition(),
+       this.getDestinyAchievementDefinition(),
+       this.getDestinyActivityGraphDefinition(),
+       this.getDestinyActivityInteractableDefinition(),
+       this.getDestinyBondDefinition(),
+       this.getDestinyCharacterCustomizationCategoryDefinition(),
+       this.getDestinyCharacterCustomizationOptionDefinition(),
+       this.getDestinyCollectibleDefinition(),
+       this.getDestinyDestinationDefinition(),
+       this.getDestinyEntitlementOfferDefinition(),
+       this.getDestinyEquipmentSlotDefinition(),
+       this.getDestinyEventCardDefinition(),
+       this.getDestinyFireteamFinderActivityGraphDefinition(),
+       this.getDestinyFireteamFinderActivitySetDefinition(),
+       this.getDestinyFireteamFinderLabelDefinition(),
+       this.getDestinyFireteamFinderLabelGroupDefinition(),
+       this.getDestinyFireteamFinderOptionDefinition(),
+       this.getDestinyFireteamFinderOptionGroupDefinition(),
+       this.getDestinyStatDefinition(),
+       this.getDestinyInventoryItemDefinition(),
+       this.getDestinyInventoryItemLiteDefinition(),
+       this.getDestinyItemTierTypeDefinition(),
+       this.getDestinyLoadoutColorDefinition(),
+       this.getDestinyLoadoutIconDefinition(),
+       this.getDestinyLoadoutNameDefinition(),
+       this.getDestinyLocationDefinition(),
+       this.getDestinyLoreDefinition(),
+       this.getDestinyMaterialRequirementSetDefinition(),
+       this.getDestinyMetricDefinition(),
+       this.getDestinyObjectiveDefinition(),
+       this.getDestinySandboxPerkDefinition(),
+       this.getDestinyPlatformBucketMappingDefinition(),
+       this.getDestinyPlugSetDefinition(),
+       this.getDestinyPowerCapDefinition(),
+       this.getDestinyPresentationNodeDefinition(),
+       this.getDestinyProgressionDefinition(),
+       this.getDestinyProgressionLevelRequirementDefinition(),
+       this.getDestinyRecordDefinition(),
+       this.getDestinyRewardAdjusterPointerDefinition(),
+       this.getDestinyRewardAdjusterProgressionMapDefinition(),
+       this.getDestinyRewardItemListDefinition(),
+       this.getDestinySackRewardItemListDefinition(),
+       this.getDestinySandboxPatternDefinition(),
+       this.getDestinySeasonDefinition(),
+       this.getDestinySeasonPassDefinition(),
+       this.getDestinySocialCommendationDefinition(),
+       this.getDestinySocketCategoryDefinition(),
+       this.getDestinySocketTypeDefinition(),
+       this.getDestinyTraitDefinition(),
+       this.getDestinyUnlockCountMappingDefinition(),
+       this.getDestinyUnlockEventDefinition(),
+       this.getDestinyUnlockExpressionMappingDefinition(),
+       this.getDestinyVendorDefinition(),
+       this.getDestinyMilestoneDefinition(),
+       this.getDestinyActivityModifierDefinition(),
+       this.getDestinyReportReasonCategoryDefinition(),
+       this.getDestinyArtifactDefinition(),
+       this.getDestinyBreakerTypeDefinition(),
+       this.getDestinyChecklistDefinition(),
+       this.getDestinyEnergyTypeDefinition(),
+       this.getDestinySocialCommendationNodeDefinition(),
+       this.getDestinyGuardianRankDefinition(),
+       this.getDestinyGuardianRankConstantsDefinition(),
+       this.getDestinyLoadoutConstantsDefinition(),
+       this.getDestinyFireteamFinderConstantsDefinition(),
+       this.getDestinyGlobalConstantsDefinition()
+   );
+  }
+
+
+
 }

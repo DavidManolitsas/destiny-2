@@ -3,7 +3,7 @@ servers:
   - url: 'http://localhost:8080'
     description: localhost
 info:
-  version: 1.0.0
+  version: 1.1.0
   title: Destiny 2 API
 paths:
   /manifest:
@@ -18,9 +18,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Manifest'
+    put:
+      summary: Update Bungie Destiny 2 Manifest in Database Collection
+      tags:
+        - Manifest
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manifest'
 components:
   schemas:
     Manifest:
+      type: object
+      properties:
+        version:
+          type: string
+        destinyDefinitions:
+          $ref: '#/components/schemas/DestinyDefinitions'
+
+    DestinyDefinitions:
       type: object
       properties:
         DestinyArtDyeChannelDefinition:
