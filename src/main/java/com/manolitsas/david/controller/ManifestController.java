@@ -15,13 +15,11 @@ public class ManifestController implements ManifestApi {
 
   @Override
   public ResponseEntity<Manifest> manifestGet() {
-    Manifest response = service.getBungieManifest();
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(service.getBungieManifest());
   }
 
   @Override
   public ResponseEntity<Manifest> manifestPut() {
-    Manifest response = service.updateManifest();
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(service.updateManifest());
   }
 }
