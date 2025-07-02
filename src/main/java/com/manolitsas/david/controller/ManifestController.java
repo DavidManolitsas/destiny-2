@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.CompletableFuture;
+
 @RestController
 @RequiredArgsConstructor
 public class ManifestController implements ManifestApi {
@@ -15,13 +17,11 @@ public class ManifestController implements ManifestApi {
 
   @Override
   public ResponseEntity<Manifest> manifestGet() {
-    Manifest response = service.getBungieManifest();
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(service.getBungieManifest());
   }
 
   @Override
   public ResponseEntity<Manifest> manifestPut() {
-    Manifest response = service.updateManifest();
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(service.updateManifest());
   }
 }
