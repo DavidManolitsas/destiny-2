@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.CompletableFuture;
-
 @RestController
 @RequiredArgsConstructor
 public class ManifestController implements ManifestApi {

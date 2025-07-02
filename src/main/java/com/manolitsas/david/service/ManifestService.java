@@ -1,25 +1,15 @@
 package com.manolitsas.david.service;
 
-import com.manolitsas.david.client.BungieCommonClient;
 import com.manolitsas.david.client.BungieRestClient;
 import com.manolitsas.david.dto.DestinyDefinitions;
 import com.manolitsas.david.dto.Manifest;
 import com.manolitsas.david.mapper.BungieMapper;
-import com.manolitsas.david.model.common.ContentDetails;
-import com.manolitsas.david.model.common.DisplayProperties;
-import com.manolitsas.david.model.entity.Property;
 import com.manolitsas.david.model.platform.BungieManifest;
 import com.manolitsas.david.model.platform.WorldComponentContent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.concurrent.CompletableFuture;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 @Slf4j
