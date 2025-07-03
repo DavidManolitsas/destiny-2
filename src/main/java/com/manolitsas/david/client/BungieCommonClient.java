@@ -19,8 +19,7 @@ public class BungieCommonClient {
   public HashMap<String, ContentDetails> getCommonContent(String uri) {
     String response = bungieCommonRestClient.get().uri(uri).retrieve().body(String.class);
     try {
-      return objectMapper.readValue(
-          response, new TypeReference<HashMap<String, ContentDetails>>() {});
+      return objectMapper.readValue(response, new TypeReference<>() {});
     } catch (IOException e) {
       throw new RuntimeException(
           String.format("Failed to parse response from Bungie Common API: %s", uri), e);

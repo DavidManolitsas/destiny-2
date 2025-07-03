@@ -1,6 +1,5 @@
 package com.manolitsas.david.client.interceptor;
 
-import jakarta.validation.constraints.NotNull;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +16,9 @@ public class RestClientInterceptor implements ClientHttpRequestInterceptor {
 
   @Override
   public ClientHttpResponse intercept(
-      @NotNull HttpRequest request, @NotNull byte[] body, ClientHttpRequestExecution execution)
+      @NonNull HttpRequest request,
+      @NonNull byte[] body,
+      @NonNull ClientHttpRequestExecution execution)
       throws IOException {
     String requestBodyMessage = getRequestBodyMessage(body);
     log.info(
