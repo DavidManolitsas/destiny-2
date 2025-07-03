@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-
 @Component
 @RequiredArgsConstructor
 public class BungieRestClient implements BungieClient {
@@ -14,7 +13,8 @@ public class BungieRestClient implements BungieClient {
 
   @Override
   public BungieManifest getManifest() {
-    return bungiePlatformRestClient.get()
+    return bungiePlatformRestClient
+        .get()
         .uri("/Destiny2/Manifest")
         .retrieve()
         .body(BungieManifest.class);

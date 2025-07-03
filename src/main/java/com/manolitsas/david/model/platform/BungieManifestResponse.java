@@ -8,10 +8,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BungieManifestResponse {
 
-  @JsonProperty
-  private String version;
+  @JsonProperty private String version;
 
   @JsonProperty("jsonWorldComponentContentPaths")
   private WorldComponentContentPaths worldComponentContentPaths;
-
 }

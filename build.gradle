@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.3'
     id 'io.spring.dependency-management' version '1.1.7'
-    id "org.openapi.generator" version "7.7.0"
+    id "org.openapi.generator" version '7.7.0'
+    id 'com.diffplug.spotless' version '7.0.4'
 }
 
 group = 'com.manolitsas.david'
@@ -12,13 +13,17 @@ repositories {
     mavenCentral()
 }
 
+tasks.named('build') {
+    dependsOn tasks.named('spotlessApply')
+}
+
 compileJava.dependsOn tasks.openApiGenerate
 
 dependencies {
     // springframework
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    // springdoc opeapi
+    // springdoc openapi
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0"
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
     // lombok
@@ -63,5 +68,14 @@ sourceSets {
         java {
             srcDirs "$buildDir/generated/src/main/java"
         }
+    }
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+        googleJavaFormat()
+        targetExclude("**/generated/**")
     }
 }

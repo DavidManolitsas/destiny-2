@@ -10,5 +10,4 @@ public class WorldComponentContentPaths {
 
   @JsonProperty("en")
   private WorldComponentContent content;
-
 }

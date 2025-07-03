@@ -1,6 +1,7 @@
 package com.manolitsas.david.controller;
 
 import com.manolitsas.david.api.ManifestApi;
+import com.manolitsas.david.dto.ContentPropertyResponse;
 import com.manolitsas.david.dto.Manifest;
 import com.manolitsas.david.service.ManifestService;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,10 @@ public class ManifestController implements ManifestApi {
   @Override
   public ResponseEntity<Manifest> manifestPut() {
     return ResponseEntity.ok(service.updateManifest());
+  }
+
+  @Override
+  public ResponseEntity<ContentPropertyResponse> manifestDefinitionGet(String definition) {
+    return ResponseEntity.ok(service.getContentPropertiesByDefinition(definition));
   }
 }

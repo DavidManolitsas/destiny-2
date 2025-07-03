@@ -18,11 +18,9 @@ public class Property {
     this.hash = hash;
   }
 
-  @Id
-  private String hash;
+  @Id private String hash;
   private String description;
   private String name;
   private String icon;
   private Boolean hasIcon;
-
 }

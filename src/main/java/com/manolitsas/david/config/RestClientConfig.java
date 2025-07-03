@@ -27,10 +27,11 @@ public class RestClientConfig {
     return builder
         .baseUrl(bungieBaseUrl)
         .requestInterceptor(interceptor)
-        .defaultHeaders(httpHeaders -> {
-          httpHeaders.set("Accept", "application/json");
-          httpHeaders.set("x-api-key", bungieApiKey);
-        })
+        .defaultHeaders(
+            httpHeaders -> {
+              httpHeaders.set("Accept", "application/json");
+              httpHeaders.set("x-api-key", bungieApiKey);
+            })
         .build();
   }
 

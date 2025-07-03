@@ -1,25 +1,32 @@
 package com.manolitsas.david.client.interceptor;
 
-import jakarta.validation.constraints.NotNull;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @Component
 @Slf4j
 public class RestClientInterceptor implements ClientHttpRequestInterceptor {
 
-
   @Override
-  public ClientHttpResponse intercept(@NotNull HttpRequest request, @NotNull byte[] body, ClientHttpRequestExecution execution) throws IOException {
+  @NonNull
+  public ClientHttpResponse intercept(
+      @NonNull HttpRequest request,
+      @NonNull byte[] body,
+      @NonNull ClientHttpRequestExecution execution)
+      throws IOException {
     String requestBodyMessage = getRequestBodyMessage(body);
-    log.info("Sending HTTP {} request to {} {}", request.getMethod(), request.getURI(), requestBodyMessage);
+    log.info(
+        "Sending HTTP {} request to {} {}",
+        request.getMethod(),
+        request.getURI(),
+        requestBodyMessage);
     return execution.execute(request, body);
   }
 
@@ -29,7 +36,7 @@ public class RestClientInterceptor implements ClientHttpRequestInterceptor {
     }
 
     try {
-      String requestBody = new String (body, StandardCharsets.UTF_8);
+      String requestBody = new String(body, StandardCharsets.UTF_8);
       if (requestBody.trim().isEmpty()) {
         return "";
       }
@@ -38,5 +45,4 @@ public class RestClientInterceptor implements ClientHttpRequestInterceptor {
       return "unable to deserialize request body";
     }
   }
-
 }

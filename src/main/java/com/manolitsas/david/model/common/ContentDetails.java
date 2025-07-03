@@ -8,13 +8,9 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContentDetails {
 
-  @JsonProperty
-  private DisplayProperties displayProperties;
+  @JsonProperty private DisplayProperties displayProperties;
 
-  @JsonProperty
-  private Long hash;
+  @JsonProperty private Long hash;
 
-  @JsonProperty
-  private Integer index;
-
+  @JsonProperty private Integer index;
 }
