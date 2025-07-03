@@ -1,31 +1,27 @@
 package com.manolitsas.david.service;
 
 import com.manolitsas.david.client.BungieCommonClient;
-import com.manolitsas.david.dto.ContentPropertyResponse;
-import com.manolitsas.david.mapper.BungieMapper;
 import com.manolitsas.david.model.common.ContentDetails;
 import com.manolitsas.david.model.common.DisplayProperties;
 import com.manolitsas.david.model.entity.Property;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class ManifestAsyncService {
 
-  private static final Pattern DEFINITION_URI_PATTERN = Pattern.compile("/([A-Za-z]+)-[a-f0-9\\-]+\\.json$");
+  private static final Pattern DEFINITION_URI_PATTERN =
+      Pattern.compile("/([A-Za-z]+)-[a-f0-9\\-]+\\.json$");
   private final BungieCommonClient commonClient;
   private final MongoTemplate mongoTemplate;
-
 
   @Async("taskExecutor")
   public void saveDefinition(String definitionUri) {
@@ -47,7 +43,9 @@ public class ManifestAsyncService {
       var trait = traits.get(propertyHash);
       DisplayProperties displayProperties = trait.getDisplayProperties();
 
-      if (displayProperties == null || displayProperties.getDescription() == null ||displayProperties.getDescription().trim().isEmpty()) {
+      if (displayProperties == null
+          || displayProperties.getDescription() == null
+          || displayProperties.getDescription().trim().isEmpty()) {
         continue;
       }
 
@@ -55,7 +53,7 @@ public class ManifestAsyncService {
       property.setName(displayProperties.getName());
       property.setDescription(displayProperties.getDescription());
       if (displayProperties.getIcon() != null) {
-        property.setIcon(String.format("https://www.bungie.net%s",displayProperties.getIcon()));
+        property.setIcon(String.format("https://www.bungie.net%s", displayProperties.getIcon()));
       }
       property.setHasIcon(displayProperties.getHasIcon());
 

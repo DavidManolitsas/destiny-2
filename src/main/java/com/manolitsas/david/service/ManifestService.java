@@ -8,13 +8,11 @@ import com.manolitsas.david.mapper.BungieMapper;
 import com.manolitsas.david.model.entity.Property;
 import com.manolitsas.david.model.platform.BungieManifest;
 import com.manolitsas.david.model.platform.WorldComponentContent;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Service
 @Slf4j
@@ -25,7 +23,6 @@ public class ManifestService {
   private final BungieMapper mapper;
   private final MongoTemplate mongoTemplate;
   private final ManifestAsyncService manifestAsyncService;
-
 
   /**
    * Get the Bungie Destiny 2 manifest.
@@ -41,14 +38,17 @@ public class ManifestService {
     }
 
     manifest.setVersion(bungieManifest.getResponse().getVersion());
-    DestinyDefinitions definitions = mapper.toDestinyDefinitions(bungieManifest.getResponse().getWorldComponentContentPaths().getContent());
+    DestinyDefinitions definitions =
+        mapper.toDestinyDefinitions(
+            bungieManifest.getResponse().getWorldComponentContentPaths().getContent());
     manifest.setDestinyDefinitions(definitions);
 
     return manifest;
   }
 
   /**
-   * Retrieve the latest Bungie Destiny 2 manifest and update the definitions in the Mongo collection
+   * Retrieve the latest Bungie Destiny 2 manifest and update the definitions in the Mongo
+   * collection
    *
    * @return JSON data for the Destiny 2 manifest
    */
@@ -60,7 +60,8 @@ public class ManifestService {
       return manifest;
     }
 
-    WorldComponentContent worldComponentContent = bungieManifest.getResponse().getWorldComponentContentPaths().getContent();
+    WorldComponentContent worldComponentContent =
+        bungieManifest.getResponse().getWorldComponentContentPaths().getContent();
 
     for (String definitionUri : worldComponentContent.getAllDefinitions()) {
       manifestAsyncService.saveDefinition(definitionUri);
@@ -69,7 +70,6 @@ public class ManifestService {
     manifest.setVersion(bungieManifest.getResponse().getVersion());
     return manifest;
   }
-
 
   /**
    * Retrieve the definition from the Mongo collection by the provided definition name.
@@ -88,5 +88,4 @@ public class ManifestService {
 
     return response;
   }
-
 }

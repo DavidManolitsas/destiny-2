@@ -27,8 +27,6 @@ replay_pid*
 gradle/
 build/
 bin/
-gradlew
-gradlew.bat
 
 ### IntelliJ IDEA ###
 .idea/

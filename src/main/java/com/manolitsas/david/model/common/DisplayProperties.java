@@ -8,16 +8,11 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DisplayProperties {
 
-  @JsonProperty
-  private String description;
+  @JsonProperty private String description;
 
-  @JsonProperty
-  private String name;
+  @JsonProperty private String name;
 
-  @JsonProperty
-  private String icon;
+  @JsonProperty private String icon;
 
-  @JsonProperty
-  private Boolean hasIcon;
-
+  @JsonProperty private Boolean hasIcon;
 }
