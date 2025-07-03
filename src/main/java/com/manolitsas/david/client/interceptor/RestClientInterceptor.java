@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class RestClientInterceptor implements ClientHttpRequestInterceptor {
 
   @Override
+  @NonNull
   public ClientHttpResponse intercept(
       @NonNull HttpRequest request,
       @NonNull byte[] body,
