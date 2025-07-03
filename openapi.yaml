@@ -29,6 +29,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Manifest'
+  /manifest/{definition}:
+    get:
+      summary: Get Bungie Manifest by definition
+      tags:
+        - Manifest
+      parameters:
+        - name: definition
+          in: path
+          required: true
+          description: name of the manifest definition
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentPropertyResponse'
 components:
   schemas:
     Manifest:
@@ -216,3 +235,27 @@ components:
           type: string
         DestinyGlobalConstantsDefinition:
           type: string
+
+    ContentPropertyResponse:
+      type: object
+      properties:
+        definition:
+          type: string
+        contentProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentProperty'
+
+    ContentProperty:
+      type: object
+      properties:
+        hash:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+        hasIcon:
+          type: boolean

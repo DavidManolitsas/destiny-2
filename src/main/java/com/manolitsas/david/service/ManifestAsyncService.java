@@ -1,6 +1,8 @@
 package com.manolitsas.david.service;
 
 import com.manolitsas.david.client.BungieCommonClient;
+import com.manolitsas.david.dto.ContentPropertyResponse;
+import com.manolitsas.david.mapper.BungieMapper;
 import com.manolitsas.david.model.common.ContentDetails;
 import com.manolitsas.david.model.common.DisplayProperties;
 import com.manolitsas.david.model.entity.Property;
@@ -11,13 +13,14 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ContentPropertyService {
+public class ManifestAsyncService {
 
   private static final Pattern DEFINITION_URI_PATTERN = Pattern.compile("/([A-Za-z]+)-[a-f0-9\\-]+\\.json$");
   private final BungieCommonClient commonClient;
@@ -25,7 +28,7 @@ public class ContentPropertyService {
 
 
   @Async("taskExecutor")
-  public void saveContentProperties(String definitionUri) {
+  public void saveDefinition(String definitionUri) {
     int count = 0;
     String collectionName = null;
     HashMap<String, ContentDetails> traits = commonClient.getCommonContent(definitionUri);
@@ -33,6 +36,11 @@ public class ContentPropertyService {
 
     if (matcher.find()) {
       collectionName = matcher.group(1);
+    }
+
+    if (collectionName == null) {
+      log.info("Unable to extract database name from {}", definitionUri);
+      return;
     }
 
     for (String propertyHash : traits.keySet()) {
@@ -51,16 +59,10 @@ public class ContentPropertyService {
       }
       property.setHasIcon(displayProperties.getHasIcon());
 
-      if (collectionName != null) {
-        mongoTemplate.save(property, collectionName);
-        count++;
-        continue;
-      }
-      log.info("Unable to extract database name from {}", definitionUri);
+      mongoTemplate.save(property, collectionName);
+      count++;
     }
 
     log.info("Saved {} properties in collection {}", count, collectionName);
   }
-
-
 }
