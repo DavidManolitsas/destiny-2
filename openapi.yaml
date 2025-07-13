@@ -48,6 +48,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentPropertyResponse'
+  /armor:
+    get:
+      summary: Get armor 3.0 stat distribution
+      tags:
+        - Armor
+      requestBody:
+        description: armor archetype details and exotic
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArmorRequest"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArmorResponse"
+
 components:
   schemas:
     Manifest:
@@ -259,3 +279,107 @@ components:
           type: string
         hasIcon:
           type: boolean
+
+    ArmorStats:
+      type: object
+      properties:
+        weapons:
+          type: integer
+        health:
+          type: integer
+        class:
+          type: integer
+        grenade:
+          type: integer
+        super:
+          type: integer
+        melee:
+          type: integer
+
+    Archetype:
+      type: string
+      enum:
+        - gunner
+        - bulwark
+        - specialist
+        - grenadier
+        - paragon
+        - brawler
+
+    Stat:
+      type: string
+      enum:
+        - weapons
+        - health
+        - class
+        - grenade
+        - super
+        - melee
+
+    Armor:
+      type: object
+      properties:
+        archetype:
+          $ref: "#/components/schemas/Archetype"
+        tertiary:
+          $ref: "#/components/schemas/Stat"
+        tier:
+          type: integer
+          minimum: 1
+          maximum: 5
+        mod:
+          $ref: "#/components/schemas/Stat"
+        tuneAdd:
+          $ref: "#/components/schemas/Stat"
+        tuneSubtract:
+          $ref: "#/components/schemas/Stat"
+        masterwork:
+          type: boolean
+
+    ArmorSlot:
+      type: string
+      enum:
+        - helmet
+        - gauntlets
+        - chest
+        - legs
+        - classItem
+
+    ArmorRequest:
+      type: object
+      properties:
+        exotic:
+          properties:
+            slot:
+              $ref: "#/components/schemas/ArmorSlot"
+            stats:
+              $ref: "#/components/schemas/ArmorStats"
+        armor:
+          type: object
+          properties:
+            helmet:
+              $ref: "#/components/schemas/Armor"
+            gauntlets:
+              $ref: "#/components/schemas/Armor"
+            chest:
+              $ref: "#/components/schemas/Armor"
+            legs:
+              $ref: "#/components/schemas/Armor"
+            class:
+              $ref: "#/components/schemas/Armor"
+
+    ArmorResponse:
+      type: object
+      properties:
+        helmet:
+          $ref: "#/components/schemas/ArmorStats"
+        gauntlets:
+          $ref: "#/components/schemas/ArmorStats"
+        chest:
+          $ref: "#/components/schemas/ArmorStats"
+        legs:
+          $ref: "#/components/schemas/ArmorStats"
+        class:
+          $ref: "#/components/schemas/ArmorStats"
+        total:
+          $ref: "#/components/schemas/ArmorStats"
