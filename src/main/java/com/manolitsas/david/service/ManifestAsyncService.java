@@ -63,15 +63,11 @@ public class ManifestAsyncService {
       Query query = new Query(Criteria.where("_id").is(propertyHash));
       boolean exists = mongoTemplate.exists(query, Property.class, collectionName);
 
-//      if (!exists) {
-//        log.info("Creating new Destiny 2 property {} in {} collection", propertyHash, collectionName);
-//        mongoTemplate.save(property, collectionName);
-//        count++;
-//      }
-
-//      log.info("Creating new Destiny 2 property {} in {} collection", propertyHash, collectionName);
-      mongoTemplate.save(property, collectionName);
-      count++;
+      if (!exists) {
+        // log.info("Creating new Destiny 2 property {} in {} collection", propertyHash, collectionName);
+        mongoTemplate.save(property, collectionName);
+        count++;
+      }
 
     }
 
