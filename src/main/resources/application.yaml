@@ -6,6 +6,9 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/
       database: destiny-2-data
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
 
 bungie:
   client:

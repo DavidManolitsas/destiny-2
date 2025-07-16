@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -57,10 +59,18 @@ public class ManifestAsyncService {
       }
       property.setHasIcon(displayProperties.getHasIcon());
 
-      mongoTemplate.save(property, collectionName);
-      count++;
+      // check if property already exists
+      Query query = new Query(Criteria.where("_id").is(propertyHash));
+      boolean exists = mongoTemplate.exists(query, Property.class, collectionName);
+
+      if (!exists) {
+        // log.info("Creating new Destiny 2 property {} in {} collection", propertyHash, collectionName);
+        mongoTemplate.save(property, collectionName);
+        count++;
+      }
+
     }
 
-    log.info("Saved {} properties in collection {}", count, collectionName);
+    log.info("Inserted {} new properties in collection {}", count, collectionName);
   }
 }
