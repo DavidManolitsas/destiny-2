@@ -60,9 +60,6 @@ public class WorldComponentContent {
   @JsonProperty("DestinyRewardMappingDefinition")
   private String destinyRewardMappingDefinition;
 
-  @JsonProperty("DestinyRewardSheetDefinition")
-  private String destinyRewardSheetDefinition;
-
   @JsonProperty("DestinyItemCategoryDefinition")
   private String destinyItemCategoryDefinition;
 
@@ -78,11 +75,35 @@ public class WorldComponentContent {
   @JsonProperty("DestinyAchievementDefinition")
   private String destinyAchievementDefinition;
 
+  @JsonProperty("DestinyActivityDifficultyTierCollectionDefinition")
+  private String destinyActivityDifficultyTierCollectionDefinition;
+
+  @JsonProperty("DestinyActivityFamilyDefinition")
+  private String destinyActivityFamilyDefinition;
+
   @JsonProperty("DestinyActivityGraphDefinition")
   private String destinyActivityGraphDefinition;
 
   @JsonProperty("DestinyActivityInteractableDefinition")
   private String destinyActivityInteractableDefinition;
+
+  @JsonProperty("DestinyActivityLoadoutRestrictionDefinition")
+  private String destinyActivityLoadoutRestrictionDefinition;
+
+  @JsonProperty("DestinyActivitySelectableSkullCollectionDefinition")
+  private String destinyActivitySelectableSkullCollectionDefinition;
+
+  @JsonProperty("DestinyActivitySelectableSkullExclusionGroupDefinition")
+  private String destinyActivitySelectableSkullExclusionGroupDefinition;
+
+  @JsonProperty("DestinyActivitySkullCategoryDefinition")
+  private String destinyActivitySkullCategoryDefinition;
+
+  @JsonProperty("DestinyActivitySkullCollectionDefinition")
+  private String destinyActivitySkullCollectionDefinition;
+
+  @JsonProperty("DestinyActivitySkullSubcategoryDefinition")
+  private String destinyActivitySkullSubcategoryDefinition;
 
   @JsonProperty("DestinyBondDefinition")
   private String destinyBondDefinition;
@@ -101,6 +122,9 @@ public class WorldComponentContent {
 
   @JsonProperty("DestinyEntitlementOfferDefinition")
   private String destinyEntitlementOfferDefinition;
+
+  @JsonProperty("DestinyEquipableItemSetDefinition")
+  private String destinyEquipableItemSetDefinition;
 
   @JsonProperty("DestinyEquipmentSlotDefinition")
   private String destinyEquipmentSlotDefinition;
@@ -134,6 +158,9 @@ public class WorldComponentContent {
 
   @JsonProperty("DestinyInventoryItemLiteDefinition")
   private String destinyInventoryItemLiteDefinition;
+
+  @JsonProperty("DestinyItemFilterDefinition")
+  private String destinyItemFilterDefinition;
 
   @JsonProperty("DestinyItemTierTypeDefinition")
   private String destinyItemTierTypeDefinition;
@@ -270,6 +297,9 @@ public class WorldComponentContent {
   @JsonProperty("DestinyGlobalConstantsDefinition")
   private String destinyGlobalConstantsDefinition;
 
+  @JsonProperty("DestinyInventoryItemConstantsDefinition")
+  private String destinyInventoryItemConstantsDefinition;
+
   public List<String> getAllDefinitions() {
     return List.of(
         this.getDestinyArtDyeChannelDefinition(),
@@ -289,20 +319,28 @@ public class WorldComponentContent {
         this.getDestinyRewardSourceDefinition(),
         this.getDestinyUnlockValueDefinition(),
         this.getDestinyRewardMappingDefinition(),
-        this.getDestinyRewardSheetDefinition(),
         this.getDestinyItemCategoryDefinition(),
         this.getDestinyDamageTypeDefinition(),
         this.getDestinyActivityModeDefinition(),
         this.getDestinyMedalTierDefinition(),
         this.getDestinyAchievementDefinition(),
+        this.getDestinyActivityDifficultyTierCollectionDefinition(),
+        this.getDestinyActivityFamilyDefinition(),
         this.getDestinyActivityGraphDefinition(),
         this.getDestinyActivityInteractableDefinition(),
+        this.getDestinyActivityLoadoutRestrictionDefinition(),
+        this.getDestinyActivitySelectableSkullCollectionDefinition(),
+        this.getDestinyActivitySelectableSkullExclusionGroupDefinition(),
+        this.getDestinyActivitySkullCategoryDefinition(),
+        this.getDestinyActivitySkullCollectionDefinition(),
+        this.getDestinyActivitySkullSubcategoryDefinition(),
         this.getDestinyBondDefinition(),
         this.getDestinyCharacterCustomizationCategoryDefinition(),
         this.getDestinyCharacterCustomizationOptionDefinition(),
         this.getDestinyCollectibleDefinition(),
         this.getDestinyDestinationDefinition(),
         this.getDestinyEntitlementOfferDefinition(),
+        this.getDestinyEquipableItemSetDefinition(),
         this.getDestinyEquipmentSlotDefinition(),
         this.getDestinyEventCardDefinition(),
         this.getDestinyFireteamFinderActivityGraphDefinition(),
@@ -314,6 +352,7 @@ public class WorldComponentContent {
         this.getDestinyStatDefinition(),
         this.getDestinyInventoryItemDefinition(),
         this.getDestinyInventoryItemLiteDefinition(),
+        this.getDestinyItemFilterDefinition(),
         this.getDestinyItemTierTypeDefinition(),
         this.getDestinyLoadoutColorDefinition(),
         this.getDestinyLoadoutIconDefinition(),
@@ -358,6 +397,7 @@ public class WorldComponentContent {
         this.getDestinyGuardianRankConstantsDefinition(),
         this.getDestinyLoadoutConstantsDefinition(),
         this.getDestinyFireteamFinderConstantsDefinition(),
-        this.getDestinyGlobalConstantsDefinition());
+        this.getDestinyGlobalConstantsDefinition(),
+        this.getDestinyInventoryItemConstantsDefinition());
   }
 }
