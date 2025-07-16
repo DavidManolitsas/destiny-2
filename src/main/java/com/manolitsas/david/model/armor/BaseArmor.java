@@ -112,6 +112,10 @@ public abstract class BaseArmor {
 
   public ArmorStats addAttunement(ArmorStats stats, Armor armor, ArmorSlot slot) {
 
+    if (armor.getTuneAdd() == null && armor.getTuneSubtract() == null) {
+      return stats;
+    }
+
     if (armor.getTuneAdd() == null || armor.getTuneSubtract() == null) {
       String message = "Both Add and Subtract attunement must be provided";
       log.warn(message);
