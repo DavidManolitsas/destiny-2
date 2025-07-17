@@ -45,9 +45,12 @@ public class ManifestAsyncService {
       var trait = traits.get(propertyHash);
       DisplayProperties displayProperties = trait.getDisplayProperties();
 
-      if (displayProperties == null
-          || displayProperties.getDescription() == null
-          || displayProperties.getDescription().trim().isEmpty()) {
+      if (displayProperties == null) {
+        continue;
+      }
+
+      if ((displayProperties.getName() == null || displayProperties.getName().trim().isEmpty()) && (displayProperties.getDescription() == null || displayProperties.getDescription().trim().isEmpty())) {
+        // properties description and name are null/empty
         continue;
       }
 
@@ -64,7 +67,7 @@ public class ManifestAsyncService {
       boolean exists = mongoTemplate.exists(query, Property.class, collectionName);
 
       if (!exists) {
-        // log.info("Creating new Destiny 2 property {} in {} collection", propertyHash, collectionName);
+        // log.info("Creating new Destiny 2 property {} {} in {} collection", propertyHash, property.getName(), collectionName);
         mongoTemplate.save(property, collectionName);
         count++;
       }
