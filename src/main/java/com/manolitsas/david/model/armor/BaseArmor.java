@@ -23,7 +23,8 @@ public abstract class BaseArmor {
 
   public abstract ArmorStats getStats(ArmorStats stats, Armor armor, ArmorSlot slot);
 
-  public abstract ArmorStats addTertiaryStatAndMasterwork(ArmorStats stats, Armor armor, ArmorSlot slot);
+  public abstract ArmorStats addTertiaryStatAndMasterwork(
+      ArmorStats stats, Armor armor, ArmorSlot slot);
 
   public ArmorStats addArmorModStat(ArmorStats stats, Stat mod) {
     switch (mod) {

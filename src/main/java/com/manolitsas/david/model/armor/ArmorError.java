@@ -12,5 +12,4 @@ public class ArmorError {
 
   private ArmorSlot slot;
   private String message;
-
 }

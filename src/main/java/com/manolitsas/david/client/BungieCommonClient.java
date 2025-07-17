@@ -2,7 +2,7 @@ package com.manolitsas.david.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.manolitsas.david.model.common.ContentDetails;
+import com.manolitsas.david.model.common.DefinitionDetails;
 import java.io.IOException;
 import java.util.HashMap;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class BungieCommonClient {
   private final RestClient bungieCommonRestClient;
   private final ObjectMapper objectMapper;
 
-  public HashMap<String, ContentDetails> getCommonContent(String uri) {
+  public HashMap<String, DefinitionDetails> getCommonContent(String uri) {
     String response = bungieCommonRestClient.get().uri(uri).retrieve().body(String.class);
     try {
       return objectMapper.readValue(response, new TypeReference<>() {});

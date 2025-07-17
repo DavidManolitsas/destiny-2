@@ -57,7 +57,10 @@ public class Specialist extends BaseArmor {
     Boolean masterwork = armor.getMasterwork();
 
     if (tertiary.equals(getPrimaryStat()) || tertiary.equals(getSecondaryStat())) {
-      String message = String.format("%s armor can not have tertiary stat in %s/%s", getArchetype(), getPrimaryStat(), getSecondaryStat());
+      String message =
+          String.format(
+              "%s armor can not have tertiary stat in %s/%s",
+              getArchetype(), getPrimaryStat(), getSecondaryStat());
       log.warn(message);
       throw new ArmorBadRequestException(slot, message);
     }

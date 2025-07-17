@@ -27,5 +27,4 @@ public class Constant {
   public static final Integer ARMOR_TUNE = 5;
 
   public static final Integer MASTERWORK = 5;
-
 }

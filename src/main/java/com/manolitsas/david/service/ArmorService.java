@@ -66,7 +66,8 @@ public class ArmorService {
     } else {
       if (armor.getPropertyClass() != null) {
         ArmorStats stats = setBaseArmorStats(request);
-        response.setPropertyClass(getArmorStats(stats, armor.getPropertyClass(), ArmorSlot.CLASS_ITEM));
+        response.setPropertyClass(
+            getArmorStats(stats, armor.getPropertyClass(), ArmorSlot.CLASS_ITEM));
       }
     }
 
@@ -121,7 +122,7 @@ public class ArmorService {
     Integer melee = 0;
 
     // add all armor pieces together
-    //helmet
+    // helmet
     if (allArmor.getHelmet() != null) {
       weapons += allArmor.getHelmet().getWeapons();
       health += allArmor.getHelmet().getHealth();

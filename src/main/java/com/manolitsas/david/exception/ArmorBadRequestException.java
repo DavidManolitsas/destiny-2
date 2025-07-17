@@ -12,5 +12,4 @@ public class ArmorBadRequestException extends RuntimeException {
   private final HttpStatus status = HttpStatus.BAD_REQUEST;
   private ArmorSlot slot;
   private String message;
-
 }

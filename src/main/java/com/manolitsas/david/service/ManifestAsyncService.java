@@ -1,9 +1,10 @@
 package com.manolitsas.david.service;
 
 import com.manolitsas.david.client.BungieCommonClient;
-import com.manolitsas.david.model.common.ContentDetails;
+import com.manolitsas.david.mapper.BungieMapper;
+import com.manolitsas.david.model.common.DefinitionDetails;
 import com.manolitsas.david.model.common.DisplayProperties;
-import com.manolitsas.david.model.entity.Property;
+import com.manolitsas.david.model.entity.Item;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,13 +24,16 @@ public class ManifestAsyncService {
   private static final Pattern DEFINITION_URI_PATTERN =
       Pattern.compile("/([A-Za-z]+)-[a-f0-9\\-]+\\.json$");
   private final BungieCommonClient commonClient;
+  private final BungieMapper mapper;
   private final MongoTemplate mongoTemplate;
 
   @Async("taskExecutor")
   public void saveDefinition(String definitionUri) {
-    int count = 0;
+    int insertCount = 0;
+    int updateCount = 0;
     String collectionName = null;
-    HashMap<String, ContentDetails> traits = commonClient.getCommonContent(definitionUri);
+    HashMap<String, DefinitionDetails> manifestDefinitionItems =
+        commonClient.getCommonContent(definitionUri);
     Matcher matcher = DEFINITION_URI_PATTERN.matcher(definitionUri);
 
     if (matcher.find()) {
@@ -41,39 +45,42 @@ public class ManifestAsyncService {
       return;
     }
 
-    for (String propertyHash : traits.keySet()) {
-      var trait = traits.get(propertyHash);
-      DisplayProperties displayProperties = trait.getDisplayProperties();
+    for (String propertyHash : manifestDefinitionItems.keySet()) {
+      var definitionItem = manifestDefinitionItems.get(propertyHash);
+      DisplayProperties displayProperties = definitionItem.getDisplayProperties();
 
       if (displayProperties == null) {
         continue;
       }
 
-      if ((displayProperties.getName() == null || displayProperties.getName().trim().isEmpty()) && (displayProperties.getDescription() == null || displayProperties.getDescription().trim().isEmpty())) {
+      if ((displayProperties.getName() == null || displayProperties.getName().trim().isEmpty())
+          && (displayProperties.getDescription() == null
+              || displayProperties.getDescription().trim().isEmpty())) {
         // properties description and name are null/empty
         continue;
       }
 
-      Property property = new Property(propertyHash);
-      property.setName(displayProperties.getName());
-      property.setDescription(displayProperties.getDescription());
-      if (displayProperties.getIcon() != null) {
-        property.setIcon(String.format("https://www.bungie.net%s", displayProperties.getIcon()));
-      }
-      property.setHasIcon(displayProperties.getHasIcon());
+      Item item = mapper.toItem(propertyHash, definitionItem);
 
       // check if property already exists
       Query query = new Query(Criteria.where("_id").is(propertyHash));
-      boolean exists = mongoTemplate.exists(query, Property.class, collectionName);
+      Item existingItem = mongoTemplate.findOne(query, Item.class, collectionName);
 
-      if (!exists) {
-        // log.info("Creating new Destiny 2 property {} {} in {} collection", propertyHash, property.getName(), collectionName);
-        mongoTemplate.save(property, collectionName);
-        count++;
+      if (!mongoTemplate.exists(query, Item.class, collectionName)) {
+        // Document does not exist, insert it
+        mongoTemplate.save(item, collectionName);
+        log.info("Added new item {} {} to {} collection", propertyHash, item.getName(), collectionName);
+        insertCount++;
+      } else if (!existingItem.equals(item)) {
+        // Document exists and is different, update it
+        mongoTemplate.save(item, collectionName);
+        log.info("Updated existing item {} {} in {} collection", propertyHash, item.getName(), collectionName);
+        updateCount++;
       }
-
     }
 
-    log.info("Inserted {} new properties in collection {}", count, collectionName);
+    if (updateCount > 0 || insertCount > 0) {
+      log.info("Added {} and Updated {} items in collection {}", insertCount, updateCount, collectionName);
+    }
   }
 }

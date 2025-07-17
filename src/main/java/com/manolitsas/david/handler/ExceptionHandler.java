@@ -8,22 +8,18 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RequiredArgsConstructor
 public class ExceptionHandler {
 
-//  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  //  @ResponseStatus(HttpStatus.BAD_REQUEST)
   @org.springframework.web.bind.annotation.ExceptionHandler(ArmorBadRequestException.class)
-  public ResponseEntity<ArmorError> handleArmorBadRequestException(ArmorBadRequestException exception) {
-    final ArmorError error = new ArmorError(
-        exception.getSlot(),
-        exception.getMessage()
-    );
+  public ResponseEntity<ArmorError> handleArmorBadRequestException(
+      ArmorBadRequestException exception) {
+    final ArmorError error = new ArmorError(exception.getSlot(), exception.getMessage());
 
     return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
   }
-
 }

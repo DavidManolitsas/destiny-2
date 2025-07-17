@@ -115,8 +115,6 @@ components:
           type: string
         DestinyRewardMappingDefinition:
           type: string
-        DestinyRewardSheetDefinition:
-          type: string
         DestinyItemCategoryDefinition:
           type: string
         DestinyDamageTypeDefinition:
@@ -275,10 +273,16 @@ components:
           type: string
         name:
           type: string
-        icon:
+        iconUrl:
           type: string
-        hasIcon:
-          type: boolean
+        screenshotUrl:
+          type: string
+        flavorText:
+          type: string
+        itemType:
+          type: string
+        itemTier:
+          type: string
 
     ArmorStats:
       type: object

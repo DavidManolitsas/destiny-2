@@ -5,7 +5,7 @@ import com.manolitsas.david.dto.ContentPropertyResponse;
 import com.manolitsas.david.dto.DestinyDefinitions;
 import com.manolitsas.david.dto.Manifest;
 import com.manolitsas.david.mapper.BungieMapper;
-import com.manolitsas.david.model.entity.Property;
+import com.manolitsas.david.model.entity.Item;
 import com.manolitsas.david.model.platform.BungieManifest;
 import com.manolitsas.david.model.platform.WorldComponentContent;
 import java.util.List;
@@ -80,11 +80,11 @@ public class ManifestService {
   public ContentPropertyResponse getContentPropertiesByDefinition(String definitionName) {
     ContentPropertyResponse response = new ContentPropertyResponse();
 
-    List<Property> allProperties = mongoTemplate.findAll(Property.class, definitionName);
-    response.setContentProperties(mapper.toContentProperties(allProperties));
+    List<Item> allItems = mongoTemplate.findAll(Item.class, definitionName);
+    response.setContentProperties(mapper.toContentProperties(allItems));
     response.setDefinition(definitionName);
 
-    log.info("{} properties found in the {} collection", allProperties.size(), definitionName);
+    log.info("{} properties found in the {} collection", allItems.size(), definitionName);
 
     return response;
   }
