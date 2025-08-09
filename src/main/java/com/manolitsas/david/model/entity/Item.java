@@ -41,6 +41,8 @@ public class Item {
 
   private Boolean isFeaturedItem;
 
+  private String damageType;
+
   @CreatedDate private LocalDateTime createdAt;
 
   @LastModifiedDate private LocalDateTime updatedAt;
@@ -58,6 +60,23 @@ public class Item {
         Objects.equals(flavorText, item.flavorText) &&
         Objects.equals(itemType, item.itemType) &&
         Objects.equals(itemTier, item.itemTier) &&
-        Objects.equals(isFeaturedItem, item.isFeaturedItem);
+        Objects.equals(isFeaturedItem, item.isFeaturedItem) &&
+        Objects.equals(damageType, item.damageType);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(
+        hash,
+        description,
+        name,
+        iconUrl,
+        screenshotUrl,
+        flavorText,
+        itemType,
+        itemTier,
+        isFeaturedItem,
+        damageType
+    );
   }
 }

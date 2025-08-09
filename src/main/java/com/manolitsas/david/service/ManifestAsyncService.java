@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ManifestAsyncService {
 
+  private static final String DAMAGE_TYPE_COLLECTION = "DestinyDamageTypeDefinition";
   private static final Pattern DEFINITION_URI_PATTERN =
       Pattern.compile("/([A-Za-z]+)-[a-f0-9\\-]+\\.json$");
   private final BungieCommonClient commonClient;
@@ -61,6 +62,15 @@ public class ManifestAsyncService {
       }
 
       Item item = mapper.toItem(propertyHash, definitionItem);
+
+      // add damage type to weapons
+      if (definitionItem.getDefaultDamageTypeHash() != null) {
+        Query damageTypeQuery = new Query(Criteria.where("_id").is(definitionItem.getDefaultDamageTypeHash().toString()));
+        Item damageTypeItem = mongoTemplate.findOne(damageTypeQuery, Item.class, DAMAGE_TYPE_COLLECTION);
+        if (damageTypeItem != null) {
+          item.setDamageType(damageTypeItem.getName());
+        }
+      }
 
       // check if property already exists
       Query query = new Query(Criteria.where("_id").is(propertyHash));

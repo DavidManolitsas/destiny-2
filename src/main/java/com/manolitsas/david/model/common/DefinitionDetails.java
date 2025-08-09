@@ -23,4 +23,6 @@ public class DefinitionDetails {
   @JsonProperty private Integer index;
 
   @JsonProperty private Boolean isFeaturedItem;
+
+  @JsonProperty private Long defaultDamageTypeHash;
 }
