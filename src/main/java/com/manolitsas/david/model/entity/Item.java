@@ -43,6 +43,8 @@ public class Item {
 
   private String damageType;
 
+  private String lightGgUrl;
+
   @CreatedDate private LocalDateTime createdAt;
 
   @LastModifiedDate private LocalDateTime updatedAt;
@@ -61,7 +63,8 @@ public class Item {
         Objects.equals(itemType, item.itemType) &&
         Objects.equals(itemTier, item.itemTier) &&
         Objects.equals(isFeaturedItem, item.isFeaturedItem) &&
-        Objects.equals(damageType, item.damageType);
+        Objects.equals(damageType, item.damageType) &&
+        Objects.equals(lightGgUrl, item.lightGgUrl);
   }
 
   @Override
@@ -76,7 +79,8 @@ public class Item {
         itemType,
         itemTier,
         isFeaturedItem,
-        damageType
+        damageType,
+        lightGgUrl
     );
   }
 }

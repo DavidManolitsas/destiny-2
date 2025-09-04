@@ -38,22 +38,12 @@ public interface BungieMapper {
 
     item.setIsFeaturedItem(definitionDetails.getIsFeaturedItem());
 
-//    if (definitionDetails.getDefaultDamageType() != null) {
-//      item.setDamageType(getDamageType(definitionDetails.getDefaultDamageType()));
-//    }
+    // light.gg url
+    item.setLightGgUrl(
+        String.format(
+            "https://www.light.gg/db/items/%s/%s/",
+            hash, item.getName().toLowerCase().replace(" ", "-")));
 
     return item;
-  }
-
-  private String getDamageType(int damageType) {
-    return switch (damageType) {
-      case 0 -> "Kinetic";
-      case 1 -> "Arc";
-      case 2 -> "Solar";
-      case 3 -> "Void";
-      case 4 -> "Stasis";
-      case 5 -> "Strand";
-      default -> null;
-    };
   }
 }
